@@ -1,4 +1,3 @@
-// api/explain.js
 const fetch = require('node-fetch');
 
 export default async function handler(req, res) {
@@ -12,8 +11,8 @@ export default async function handler(req, res) {
   }
 
   const { data, inputs } = req.body;
-
   const prompt = generatePrompt(data, inputs);
+
   const body = {
     contents: [{ parts: [{ text: prompt }] }]
   };
@@ -39,15 +38,14 @@ export default async function handler(req, res) {
 }
 
 function generatePrompt(data, inputs) {
-  let prompt = "Please explain the following wireless communication calculation results:\n\n";
-  prompt += "Input Parameters:\n";
-  for (const [key, value] of Object.entries(inputs)) {
-    prompt += `- ${key}: ${value}\n`;
+  let prompt = "Explain the following wireless communication results.\\n\\n";
+  prompt += "Inputs:\\n";
+  for (const [key, val] of Object.entries(inputs)) {
+    prompt += `- ${key}: ${val}\\n`;
   }
-  prompt += "\nResults:\n";
-  for (const [key, value] of Object.entries(data)) {
-    prompt += `- ${key}: ${value}\n`;
+  prompt += "\\nResults:\\n";
+  for (const [key, val] of Object.entries(data)) {
+    prompt += `- ${key}: ${val}\\n`;
   }
-  prompt += "\nPlease provide a clear technical explanation.";
   return prompt;
 }
