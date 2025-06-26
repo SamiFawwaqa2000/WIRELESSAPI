@@ -1,9 +1,8 @@
-require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_API_KEY = "AIzaSyASxmIMHYb7RF4uax-xr1His6_tiDYttgg";
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
 
 router.post('/explain', async (req, res) => {
